@@ -1,0 +1,25 @@
+<html lang="en"> 
+  <head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+    <title>Disarray</title>
+    <style type="text/css"></style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <h1 id="heading">
+            <a href="{% url task:main %}">Disarray</a>
+        </h1>
+        <span id="add-button">
+          <a href="{% url task:add %}" title="Add new task">+</a>
+        </span>
+      </div>    
+      {% block Content %}
+      {% endblock %}
+   </div> <!-- /container -->
+  </body>
+</html>
+ 
+<!--
+vim: ts=2 sw=2 expandtab
+-->

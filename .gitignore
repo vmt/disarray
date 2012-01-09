@@ -1,0 +1,5 @@
+local/settings.py
+local/stor/database.sqlite3
+venv
+*.pyc
+*.*.swp

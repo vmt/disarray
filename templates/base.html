@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd"> 
+
+<html lang="en"> 
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+        <title>
+            L3 // {% block SiteTitle %}{% endblock %}
+        </title> 
+        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/reset.css" />
+        <!--
+        <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/blueprint/screen.css" type="text/css" media="screen, projection">
+        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/blueprint/print.css" type="text/css" media="print"> 
+        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/node.css" />
+        -->
+        <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+
+        <!--[if lt IE 8]>
+        <link rel="stylesheet" href="{{ MEDIA_URL }}/css/blueprint/ie.css" type="text/css" media="screen, projection">
+        <![endif]-->
+        <script src="{{ MEDIA_URL }}/js/jquery-1.5.1.min.js"></script>
+
+        {% block SiteStyle %} 
+        <!--
+        <style type="text/css">
+            body {
+                font-family: "Drain Sans", "Lucida Grande", verdana;
+                font-size: 12px;
+            }
+
+            div#site-header {
+                padding: 5px;
+                height: 20px;
+                background-color: lightblue;
+                border-bottom: 1px solid lightblue;
+            }
+            div#site-header h1#site-heading {
+                font-size: 15px;
+                font-weight: bold;
+            }
+        </style>
+        -->
+        {% endblock %}
+
+        <script>
+            {% block SiteScript %}{% endblock %}
+        </script>
+    </head>
+    <body>
+        {% block SiteBody %}
+        <div id="site-header">
+            <h1 id="site-heading">L3 // {% block AppName %}{% endblock %}</h1>
+            <div id="site-nav">
+            </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>
+           
+

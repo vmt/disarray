@@ -1,0 +1,29 @@
+{% extends "task/base.html" %}
+
+{% block Content %}
+    
+    <h1 class="action-heading">
+    {% if node %}
+    Edit // {{ node.id }}
+    {% else %}
+    Add
+    {% endif %}
+    </h1>
+
+    {% if node %}
+    <form method="post" action="{% url task:edit taskid=task.id %}">
+    {% else %}
+    <form method="post" action="{% url task:add %}">
+    {% endif %}
+        {% csrf_token %}
+        {% if form.errors %}
+            {{ form.errors }}
+        {% endif %}
+        {{ form.as_p }}
+        <input type="submit" value="Save"/>
+        {% if task %}
+        <a href="{% url task:remove task.id %}">Delete</a>
+        {% endif %}
+    </form>
+
+{% endblock %}

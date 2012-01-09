@@ -1,0 +1,38 @@
+{% extends "task/base.html" %}
+
+{% block Content %}
+
+    {{ block.super }}
+
+    <div class="task-view">
+        <div class="title">{{ task.title }}</div>
+        {% if task.text %}
+            <div class="text">
+            {{ task.text }}
+            </div>
+        {% endif %}
+        <div class="meta">
+            Viewed: {{ task.views }}
+            <a href="{% url task:edit task.id %}">Edit</a>
+        </div>
+
+        <form action="{% url task:view task.id %}" method="post">
+            {% csrf_token %}
+            {% if update_form.errors %}
+                {{ update_form.errors }}
+            {% endif %}
+            {{ update_form.as_p }}
+            <input type="submit" value="Post"/>
+        </form>
+
+        {% for update in updates %}
+        <div class="update">
+            <div class="text">
+                {{ update.text }}
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

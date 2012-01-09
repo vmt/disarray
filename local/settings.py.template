@@ -1,0 +1,4 @@
+DEBUG      = True
+ADMINS     = ( ('<name>', '<email>'),)
+SECRET_KEY = ''
+

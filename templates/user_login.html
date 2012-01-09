@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block SiteStyle %}
+    {{ block.super }}
+    <style type="text/css">
+    #login-page h1 {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    #login-page {
+        text-align: center;
+        padding: 20px;
+        width: 600px;
+        background-color: #fff;
+        margin: auto;
+        margin-top: 100px;
+        margin-bottom: 0;
+        padding: 25px;
+        border: 1px solid #ccc;
+    }
+    </style>
+{% endblock %}
+
+{% block SiteBody %}
+    {{ block.super }}
+
+    <div id="login-page">
+        <h1>Authenticate!</h1>
+        <form method="post" action="{% url django.contrib.auth.views.login %}">
+            {% csrf_token %}
+            {% if next %}
+                <input type="hidden" name="next" value="{{ next }}" />
+            {% endif %}
+            <input id="id_username" name="username" type="text" />
+            <input id="id_password" name="password" type="password" />
+            <input type="submit" value="Go" />
+        </form>
+    </div>
+
+{% endblock %}

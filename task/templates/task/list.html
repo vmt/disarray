@@ -1,0 +1,33 @@
+{% extends "task/base.html" %}
+
+{% block Content %}
+    
+    <h1>Tasks</h1>
+
+    <ul id="status-list">
+      {% for status in statuses %}
+        <li><a href="{{ status.url }}">{{ status.label }}</a></li>
+      {% endfor %}
+    </ul>
+
+    <ul id="tags-list">
+      {% for tag in tags %}
+        <li><a href="{{ tag.url }}">{{ tag.label }}</a></li>
+      {% endfor %}
+    </ul>
+
+    <ul class="task-list">
+        {% for task in tasks %}
+        <li>
+            <span class="task-id">[{{ task.id }}]</span>
+            <span class="task-title"><a href="{% url task:view task.id %}">{{ task.title }}</a></span>
+            <span class="task-tags">
+              {% for tag in task.tags %}
+              <span class="task-tag {% if tag.selected %}selected{% endif %}"><a href="{{ tag.url }}">{{ tag.label }}</a></span>
+              {% endfor %}
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

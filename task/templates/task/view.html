@@ -1,38 +1,72 @@
 {% extends "task/base.html" %}
 
+{% block SiteStyle %}
+  {{ block.super }}
+  <style type="text/css">
+    div.task-view .title {
+      font-size: 15px; font-weight: bold;
+    }
+    div.task-view .meta {
+      font-size: 12px; color: #444;
+    }
+    div.task-view .text {
+      margin: 10px 0 10px 0;
+      font-size: 13px; font-family: monospace;
+    }
+    div.task-view hr {
+      height: 1px;
+    }
+
+    div.task-view #id_text {
+      width: 100%;
+      height: 150px
+    }
+  </style>
+{% endblock %}
+
+{% block PageHeading %}task {{ task.id }}{% endblock %}
+
 {% block Content %}
 
-    {{ block.super }}
+  <hr size="1" />
 
-    <div class="task-view">
-        <div class="title">{{ task.title }}</div>
-        {% if task.text %}
-            <div class="text">
-            {{ task.text }}
-            </div>
-        {% endif %}
-        <div class="meta">
-            Viewed: {{ task.views }}
-            <a href="{% url task:edit task.id %}">Edit</a>
-        </div>
+  <div class="task-view">
+      <div class="title">{{ task.title }}</div>
+      {% if task.text %}
+          <div class="text">
+          {{ task.text }}
+          </div>
+      {% endif %}
+      <div class="meta">
+          {{ task.status }} // viewed: {{ task.views }} // <a href="{% url task:edit task.id %}">edit</a>
+      </div>
 
-        <form action="{% url task:view task.id %}" method="post">
-            {% csrf_token %}
-            {% if update_form.errors %}
-                {{ update_form.errors }}
-            {% endif %}
-            {{ update_form.as_p }}
-            <input type="submit" value="Post"/>
-        </form>
-
+      {% if updates %}
+        <hr size="1" />
         {% for update in updates %}
         <div class="update">
+            <div class="meta">
+                {{ update.createdon }}
+            </div>
             <div class="text">
                 {{ update.text }}
             </div>
         </div>
         {% endfor %}
+      {% endif %}
 
-    </div>
+      <hr />
+      <form action="{% url task:view task.id %}" method="post">
+          <h3>Update</h3>
+          {% csrf_token %}
+          {% if update_form.errors %}
+              {{ update_form.errors }}
+          {% endif %}
+          {{ update_form.as_p }}
+          <input type="submit" value="Post"/>
+      </form>
+
+      
+  </div>
 
 {% endblock %}

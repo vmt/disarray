@@ -42,6 +42,7 @@ def main(request):
 
 @login_required
 def add(request):
+    print "This is an edit!"
     if request.method != 'POST':
         form = TaskForm()
     else:
@@ -66,6 +67,7 @@ def edit(request, taskid):
         form = TaskForm(instance=task)
     else:
         form = TaskForm(request.POST, instance=task)
+        print "This is an edit!"
         if form.is_valid():
             task = form.save(commit=False)
             task.modifiedon = datetime.now()

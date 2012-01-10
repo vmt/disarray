@@ -1,33 +1,36 @@
 {% extends "task/base.html" %}
 
+{% block PageHeading %}tasks{% endblock %}
+
 {% block Content %}
-    
-    <h1>Tasks</h1>
 
-    <ul id="status-list">
-      {% for status in statuses %}
-        <li><a href="{{ status.url }}">{{ status.label }}</a></li>
-      {% endfor %}
-    </ul>
+<hr size="1" />
 
-    <ul id="tags-list">
-      {% for tag in tags %}
-        <li><a href="{{ tag.url }}">{{ tag.label }}</a></li>
-      {% endfor %}
-    </ul>
+<div class="float-left">
+  <ul id="status-list" class="inline">
+    {% for status in statuses %}
+      <li class="inline {% if status.selected %}selected{% endif %}">
+        <a href="{{ status.url }}">{{ status.label }}</a></li>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
 
-    <ul class="task-list">
-        {% for task in tasks %}
-        <li>
-            <span class="task-id">[{{ task.id }}]</span>
-            <span class="task-title"><a href="{% url task:view task.id %}">{{ task.title }}</a></span>
-            <span class="task-tags">
-              {% for tag in task.tags %}
-              <span class="task-tag {% if tag.selected %}selected{% endif %}"><a href="{{ tag.url }}">{{ tag.label }}</a></span>
-              {% endfor %}
-            </span>
-        </li>
+
+<ul id="task-list" class="no-style">
+  {% for task in tasks %}
+  <li>
+    <span class="task-title"><a href="{% url task:view task.id %}">{{ task.title }}</a></span>
+    <div class="task-meta">
+      {{ task.id }} //
+      <ul class="no-style inline flat task-tags">
+        {% for tag in task.tags %}
+        <li class="{% if tag.selected %}selected{% endif %}"><a href="{{ tag.url }}">{{ tag.label }}</a></span>
         {% endfor %}
-    </ul>
+      </ul>
+    </div> <!-- /task-meta -->
+  </li>
+  {% endfor %}
+</ul>
 
 {% endblock %}

@@ -1,19 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd"> 
+
 <html lang="en"> 
   <head> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
-    <title>Disarray</title>
-    <style type="text/css"></style>
+    <title>disarray // {% block PageTitle %}{% endblock %}</title> 
+    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/disarray.css" />
+    {% block SiteStyle %} 
+    <style type="text/css">
+      body {
+        font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size:13px;
+        font-weight:normal;
+        line-height:18px;
+        font-size: 12px;
+        margin: 0; padding: 0;
+      }
+      a { text-decoration: none; }
+      
+      div#container {
+        width: 650px;
+        margin: 20px 20px 10px 40px;
+      }
+
+      h1#heading {
+        display: inline;
+        font-size: 24px;
+      }
+
+      h1#heading a {
+        text-decoration: none;
+        font-weight: bold;
+        color: #333;
+      }
+
+      div#secondary-header {
+        margin: 20px 0 10px 0;
+      }
+
+      div#secondary-header h2 {
+        display: inline;
+      }
+
+      span#add-button a {
+        text-decoration: none;
+        font-weight: bold;
+      }
+      span#add-button {
+        float: right;
+        font-weight: bold;
+      }
+
+      ul#status-list {
+        list-style: none;
+        margin: 0; padding: 0;
+      }
+      ul#status-list li a {
+        margin-right: 10px;
+        text-decoration: none;
+        font-weight: bold;
+        color: skyblue;
+      }
+      #status-list li.selected a {
+        border-bottom: 2px solid blue;
+        color: blue; 
+      }
+      .inline {
+        display: inline;
+      }
+
+      hr {
+        border: 0;
+        height: 2px;
+        margin: 10px 0 10px 0;
+        color: skyblue;
+        background-color: skyblue;
+      }
+
+      ul#task-list {
+        margin-top: 20px;
+        font-size: 15px;
+      }
+      div.task-id {
+        width: 50px;
+        color: #888;
+        float: left;
+        border: 1px solid blue;
+      }
+
+      ul.no-style {
+        list-style: none;
+        padding: 0; margin: 0;
+      }
+      ul.flat li {
+        display: inline;
+      }
+
+      ul.task-tags a {
+        color: skyblue;
+      }
+      ul.task-tags li {
+        padding: 5px;
+      }
+      
+      ul.task-tags li.selected a {
+        border-bottom: 2px solid blue;
+        color: blue; 
+      }
+
+      div.task-meta {
+        font-size: 11px;
+        font-weight: bold;
+        color: #888;
+      }
+
+      label { display: block; }
+      input#id_text,
+      input#id_title,
+      input#id_tags {
+        border: 2px inset #eee;
+        padding: 4px;
+        font-size: 13px;
+      }
+      textarea#id_text {
+        border: 2px inset #eee;
+        padding: 4px;
+        font-size: 13px;
+        width: 500px;
+        height: 300px;
+      }
+      input#id_title,
+      input#id_tags { width: 400px; }
+      .helptext {
+        display: block;
+        font-size: 11px;
+        color: #888;
+    }
+    input#submit {
+    }
+
+
+    </style>
+    {% endblock %}
+
+    <script>
+      {% block SiteScript %}{% endblock %}
+    </script>
   </head>
   <body>
     <div id="container">
-      <div id="header">
-        <h1 id="heading">
-            <a href="{% url task:main %}">Disarray</a>
-        </h1>
-        <span id="add-button">
-          <a href="{% url task:add %}" title="Add new task">+</a>
-        </span>
-      </div>    
+      <div id="secondary-header">
+          <h2><a href="{% url task:main %}">disarray</a> // {% block PageHeading %}{% endblock %}</h2>
+        <span id="add-button"><a href="{% url task:add %}">Add Task</a></span>
+      </div>
       {% block Content %}
       {% endblock %}
    </div> <!-- /container -->

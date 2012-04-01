@@ -4,8 +4,6 @@
 
 {% block Content %}
 
-<hr size="1" />
-
 <div class="float-left">
   <ul id="status-list" class="inline">
     {% for status in statuses %}
@@ -20,9 +18,8 @@
 <ul id="task-list" class="no-style">
   {% for task in tasks %}
   <li>
-    <span class="task-title"><a href="{% url task:view task.id %}">{{ task.title }}</a></span>
+  <span class="task-title"><a href="{% url task:view task.id %}">[{{ task.id }}] {{ task.title }}</a></span>
     <div class="task-meta">
-      {{ task.id }} //
       <ul class="no-style inline flat task-tags">
         {% for tag in task.tags %}
         <li class="{% if tag.selected %}selected{% endif %}"><a href="{{ tag.url }}">{{ tag.label }}</a></span>

@@ -9,10 +9,10 @@
     {% block SiteStyle %} 
     <style type="text/css">
       body {
-        font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-family: Verdana, "Helvetica Neue",Helvetica,Arial,sans-serif;
         font-size:13px;
         font-weight:normal;
-        line-height:18px;
+        line-height:16px;
         font-size: 12px;
         margin: 0; padding: 0;
       }
@@ -20,7 +20,7 @@
       
       div#container {
         width: 650px;
-        margin: 20px 20px 10px 40px;
+        margin: 20px auto 10px auto;
       }
 
       h1#heading {
@@ -44,11 +44,9 @@
 
       span#add-button a {
         text-decoration: none;
-        font-weight: bold;
       }
       span#add-button {
         float: right;
-        font-weight: bold;
       }
 
       ul#status-list {
@@ -58,11 +56,10 @@
       ul#status-list li a {
         margin-right: 10px;
         text-decoration: none;
-        font-weight: bold;
         color: skyblue;
       }
       #status-list li.selected a {
-        border-bottom: 2px solid blue;
+        border-bottom: 1px solid blue;
         color: blue; 
       }
       .inline {
@@ -79,7 +76,10 @@
 
       ul#task-list {
         margin-top: 20px;
-        font-size: 15px;
+        font-size: 12px;
+      }
+      ul#task-list li {
+        margin-bottom: 10px;
       }
       div.task-id {
         width: 50px;
@@ -100,18 +100,16 @@
         color: skyblue;
       }
       ul.task-tags li {
-        padding: 5px;
+        padding: 0px; margin-right: 5px;
       }
       
       ul.task-tags li.selected a {
-        border-bottom: 2px solid blue;
+        border-bottom: 1px solid blue;
         color: blue; 
       }
 
       div.task-meta {
-        font-size: 11px;
-        font-weight: bold;
-        color: #888;
+        font-size: 11px; color: #888;
       }
 
       label { display: block; }
@@ -151,7 +149,7 @@
     <div id="container">
       <div id="secondary-header">
           <h2><a href="{% url task:main %}">disarray</a> // {% block PageHeading %}{% endblock %}</h2>
-        <span id="add-button"><a href="{% url task:add %}">Add Task</a></span>
+          <span id="add-button"><a href="{% url task:add %}">+Add Task</a></span>
       </div>
       {% block Content %}
       {% endblock %}

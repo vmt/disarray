@@ -1,5 +1,6 @@
 from django.db import models
 from taggit.managers import TaggableManager
+import markdown
 
 TASK_STATUS_CHOICES = (
     ('new',     'New'),
@@ -20,8 +21,13 @@ class Task(models.Model):
     views       = models.IntegerField(default=1)
     tags        = TaggableManager(blank=True)
 
+    def render_md(self):
+        return markdown.markdown(self.text)
 
 class TaskUpdate(models.Model):
     task        = models.ForeignKey(Task)
     createdon   = models.DateTimeField(auto_now_add=True)
     text        = models.TextField()
+
+    def render_md(self):
+        return markdown.markdown(self.text)

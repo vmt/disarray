@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="{{ MEDIA_URL }}/css/disarray.css" />
     {% block SiteStyle %} 
     <style type="text/css">
-      body {
-        font-family: "Helvetica", "Lucida Grande", verdana;
-        font-size: 12px;
-      }
+    body {
+      font-family: "Helvetica", "Lucida Grande", verdana;
+      font-size: 12px;
+    }
+    #content {
+      width: 700px;
+    }
     </style>
     {% endblock %}
 
@@ -20,14 +23,16 @@
     </script>
   </head>
   <body>
-    <h1 id="site-heading">Disarray</h1>
-    {% block SiteBody %}
-      <div id="site-header">
-          <h1 id="site-heading">L3 // {% block AppName %}{% endblock %}</h1>
-          <div id="site-nav">
-          </div>
-      </div>
-    {% endblock %}
+    <div id="content">
+      <h1 id="site-heading">Disarray</h1>
+      {% block SiteBody %}
+        <div id="site-header">
+            <h1 id="site-heading">L3 // {% block AppName %}{% endblock %}</h1>
+            <div id="site-nav">
+            </div>
+        </div>
+      {% endblock %}
+  </div>
   </body>
 </html>
            
